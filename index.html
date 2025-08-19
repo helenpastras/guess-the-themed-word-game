@@ -9,29 +9,33 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="game-container">   
-        <h1> Can you guess the word???</h1>
+    <main>
+        <div id="game-container">   
+            <h1> Can you guess the word???</h1>
+            
 
-        <div id="theme-selection" class="theme-selection">
-            <button id="hp-button">Enter the world of Harry Potter!</button>
+            <div id="theme-selection" class="theme-selection">
+                <button id="hp-button">Enter the world of Harry Potter!</button>
+            </div>
+
+            <!-- Main Game Screen (initially hidden) -->
+            <a id="hp-logo" class="hp-logo hidden" href="https://commons.wikimedia.org/wiki/File:Harry_Potter_wordmark.svg"><img alt="The boy who lived" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Harry_Potter_wordmark.svg/512px-Harry_Potter_wordmark.svg.png?20180929195053"></a>
+            <div id="game-screen" class="game-screen hidden">
+                <p class="status-text" id="wrong-guesses-text"></p>
+                <div class="word-display" id="word-display"></div>
+                <p class="status-text">Already guessed: <span class="guessed-letters" id="guessed-letters-display"></span></p>
+                <input type="text" id="guess-input" class="guess-input" maxlength="1" placeholder="_">
+                <button id="guess-button">Guess </button>
+            </div>
+        
+
+        <!-- Message Box (initially hidden) -->
+            <div id="message-box" class="message-box hidden">
+                <p id="message-text"></p>
+                <button id="restart-button">Play Again</button>
+            </div>
         </div>
-
-         <!-- Main Game Screen (initially hidden) -->
-        <a id="hp-logo" class="hp-logo hidden" href="https://commons.wikimedia.org/wiki/File:Harry_Potter_wordmark.svg"><img width="412" alt="The boy who lived" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Harry_Potter_wordmark.svg/512px-Harry_Potter_wordmark.svg.png?20180929195053"></a>
-        <div id="game-screen" class="game-screen hidden">
-            <p class="status-text" id="wrong-guesses-text"></p>
-            <div class="word-display" id="word-display"></div>
-            <p class="status-text">Already guessed: <span class="guessed-letters" id="guessed-letters-display"></span></p>
-            <input type="text" id="guess-input" class="guess-input" maxlength="1" placeholder="_">
-            <button id="guess-button">Guess </button>
-
-    </div>
-
-    <!-- Message Box (initially hidden) -->
-    <div id="message-box" class="message-box hidden">
-        <p id="message-text"></p>
-        <button id="restart-button">Play Again</button>
-    </div>
+    </main>
 
 </body>
 </html>

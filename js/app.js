@@ -30,7 +30,7 @@
 // ______________________________________________________________________________________________________
 
 /*-------------- Constants -------------*/
-const harryPotterSpells = ["accio", "alohomora", "lumos", "expecto patronum", "crucio", "wingardium leviosa", "reparo", "obliviate"];
+const harryPotterSpells = ["accio", "alohomora", "lumos", "expecto patronum", "crucio", "wingardium leviosa", "reparo", "obliviate", "expelliarmus", "nox", "petrificus totalus", "protego", "riddikulus"];
 const maxWrongGuesses = 10;
 
 /*---------- Variables (state) ---------*/
@@ -105,10 +105,12 @@ validateGuess = () => {
         }
     } else {
         wrongGuesses++;
+        guessedLetters.add(guess);
     }
-    updateDisplay();
+    
     checkGame();
     guessedLetters.add(guess);
+    updateDisplay();
     console.log(guessedLetters) //remove after validations
 };
 
@@ -135,9 +137,12 @@ restartButton.addEventListener("click", () => {
     messageBox.classList.add("hidden");
     guessInput.value = " "; 
     initGame();
-    
 });
+
 guessInput.addEventListener("keyup", (event) =>{
+    messageBox.classList.add("hidden");
+    showMessage("");
+
     if (event.key === "Enter") {
         validateGuess();
     }

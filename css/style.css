@@ -1,3 +1,32 @@
+CSS: 
+/* reset our css */
+* {
+  margin: 0;
+  box-sizing: border-box;
+};
+
+@media (max-width: 600px) {
+  .word-display {
+    font-size: 1.8rem;
+    letter-spacing: 0.3rem;
+  }
+
+  .guess-input {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  #game-container {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+}
 
 body {
     background-image: url('https://media.istockphoto.com/id/511549905/vector/time.jpg?s=612x612&w=0&k=20&c=52_AKscWZqLP9s2-_SQuV9lDsJYEnYZXDE6B9TTCG3g=');
@@ -11,6 +40,9 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+     min-height: 100vh;
+    flex-direction: column;
+    padding: 1rem;
 }
 
 h1 {
@@ -19,28 +51,32 @@ h1 {
 }
 
 button {
-    padding: 12px 24px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    background-color: #f4c430; /* goldenrod variant */
+  color: #222F5B;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
 }
 
 button:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.05);
     background-color: #c9344f;
+
 }
 
 #game-container {
-    background-color: #426b92;
-    padding: 3rem;
-    margin: 60px;
-    height: auto;
-    max-width: 90%;
-    width: 500px;
+    background: rgba(66, 107, 146, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -60,16 +96,20 @@ button:hover {
     flex-direction: column;
     gap: 1.5rem;
     align-items: center;
+
 }
 
+
 .status-text{
-    color:white;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #000;
     font-weight: bold;
 }
 
 .guessed-letters {
     font-size: 1rem;
-    color: #222F5B;
+    color: #ffffff;
+    font-weight: bold;
     min-height: 20px; /* Prevents layout shift */
 }
 
@@ -94,15 +134,27 @@ button:hover {
     display: none;
 }
 
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 .word-display {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     letter-spacing: 0.5rem;
     font-weight: bold;
     color: goldenrod;
+     animation: pulse 2s infinite;
+}
+
+.hp-logo-img {
+  max-width: 100%;
+  height: auto;
 }
 
 #hp-button {
     align-items: center;
-    border: 5px, black;
-    background-color: ;
+    border: 5px, solid black;
+    padding: 10px;
 }

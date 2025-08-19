@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="./js/app.js"></script>
     <link rel="stylesheet" href="./css/style.css">
+  
     <title>Document</title>
 </head>
 <body>
@@ -16,12 +17,13 @@
         </div>
 
          <!-- Main Game Screen (initially hidden) -->
+        <a id="hp-logo" class="hp-logo hidden" href="https://commons.wikimedia.org/wiki/File:Harry_Potter_wordmark.svg"><img width="412" alt="The boy who lived" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Harry_Potter_wordmark.svg/512px-Harry_Potter_wordmark.svg.png?20180929195053"></a>
         <div id="game-screen" class="game-screen hidden">
             <p class="status-text" id="wrong-guesses-text"></p>
             <div class="word-display" id="word-display"></div>
             <p class="status-text">Already guessed: <span class="guessed-letters" id="guessed-letters-display"></span></p>
             <input type="text" id="guess-input" class="guess-input" maxlength="1" placeholder="_">
-            <button id="guess-button">Guess</button>
+            <button id="guess-button">Guess </button>
 
     </div>
 
@@ -30,6 +32,6 @@
         <p id="message-text"></p>
         <button id="restart-button">Play Again</button>
     </div>
-    
+
 </body>
 </html>

@@ -42,6 +42,7 @@ let wrongGuesses = 0;
 /*----- Cached Element References  -----*/
 const gameScreen = document.getElementById("game-screen");
 const hpButton = document.getElementById("hp-button");
+const hpLogo = document.getElementById("hp-logo");
 const wordDisplay =document.getElementById("word-display");
 const wrongGuessesText =document.getElementById("wrong-guesses-text")
 const guessedLettersDisplay = document.getElementById("guessed-letters-display");
@@ -55,6 +56,7 @@ const restartButton = document.getElementById("restart-button");
 initGame = () =>{
      gameScreen.classList.remove("hidden");
      messageBox.classList.add("hidden");
+     hpLogo.classList.remove("hidden");
 
      let wordList = harryPotterSpells;
      secretWord = wordList[Math.floor(Math.random() * wordList.length)];
@@ -72,6 +74,7 @@ updateDisplay = () =>{
     wrongGuessesText.textContent = `Incorrect guesses left: ${maxWrongGuesses - wrongGuesses}`;
     console.log(wrongGuessesText)
     guessedLettersDisplay.textContent = [...guessedLetters].join(", ");
+    hpButton.classList.add("hidden");
     console.log(guessedLetters)
 }
 

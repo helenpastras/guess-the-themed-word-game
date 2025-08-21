@@ -9,21 +9,8 @@ Start by entering the world of magic and test your spell knowledge. Can you gues
 ![Screenshot of HP gameplay](assets/GamePlayHP-withLetters.png "Gameplay")
 
 
-### Languages and toolsets used
-* Javascript
-     * Arrays 
-     * Conditions *(if statements)*
-     * Loops
-     * Iterator Methods
-     * DOM
-* CSS
-    * Flexbox
-    * Responsive Design
-*  Markup *(HTML)*
-* Markdown *(this)*
 
-
-### Citations/Credits
+### Attributions/ Citations
 **Images** 
 
 >HP Logo from [WikimediaCommons][link]
@@ -40,4 +27,22 @@ Start by entering the world of magic and test your spell knowledge. Can you gues
 
 [site]: https://www.istockphoto.com/
 
+### Technologies Used
+* Javascript
+     * Arrays 
+     * Conditions *(if statements)*
+     * Loops
+     * Iterator Methods
+     * DOM
+* CSS
+    * Flexbox
+    * Responsive Design
+*  Markup *(HTML)*
+* Markdown *(this)*
 
+
+### Next Steps
+* Post MVP, more themes will be added to allow players to select the universe of choice, like **Starwars**, **LotR**, and **MCU**. 
+* More animations will be addded to match each theme. 
+* Light and dark modes for more adaptive play.  
+* Mobile friendly version.

@@ -31,6 +31,7 @@
 
 /*-------------- Constants -------------*/
 const harryPotterSpells = ["accio", "alohomora", "lumos", "expecto patronum", "crucio", "wingardium leviosa", "reparo", "obliviate", "expelliarmus", "nox", "petrificus totalus", "protego", "riddikulus"];
+const lotrCharacters = ["frodo", "gandalf", "aragorn", "legolas", "gollum", "sam", "pippin", "mery", "saruman", "eowyn", "gimli", "sauron"];
 const maxWrongGuesses = 10;
 
 /*---------- Variables (state) ---------*/
@@ -38,10 +39,13 @@ let secretWord = "";
 let displayWord = [];
 let guessedLetters= new Set ();
 let wrongGuesses = 0;
+let currentTheme = "";
 
 /*----- Cached Element References  -----*/
+const themeSelection = document.getElementById("theme-selection");
 const gameScreen = document.getElementById("game-screen");
 const hpButton = document.getElementById("hp-button");
+const lotrButton = document.getElementById("lotr-button");
 const hpLogo = document.getElementById("hp-logo");
 const wordDisplay =document.getElementById("word-display");
 const wrongGuessesText =document.getElementById("wrong-guesses-text")
@@ -53,12 +57,20 @@ const messageText = document.getElementById("message-text");
 const restartButton = document.getElementById("restart-button");
 
 /*-------------- Functions -------------*/
-initGame = () =>{
-     gameScreen.classList.remove("hidden");
-     messageBox.classList.add("hidden");
-     hpLogo.classList.remove("hidden");
+const initGame = (theme) =>{
+    themeSelection.classList.add("hidden"); 
+    gameScreen.classList.remove("hidden");
+    messageBox.classList.add("hidden");
+    hpLogo.classList.remove("hidden");
 
-     let wordList = harryPotterSpells;
+    let wordList = [];
+    currentTheme = themeSelection;
+     if(theme ==="harry-potter"){
+        wordList = harryPotterSpells;
+     } else if (theme === "lotr"){
+        wordList = lotrCharacters;
+     }
+
      secretWord = wordList[Math.floor(Math.random() * wordList.length)];
      displayWord = Array(secretWord.length).fill("_");
      console.log("pssst: the word is: " , secretWord)
@@ -69,7 +81,8 @@ initGame = () =>{
      guessInput.focus();
 }
 
-updateDisplay = () =>{
+
+const updateDisplay = () =>{
     wordDisplay.textContent = displayWord.join(' ');
     wrongGuessesText.textContent = `Incorrect guesses left: ${maxWrongGuesses - wrongGuesses}`;
     console.log(wrongGuessesText)
@@ -78,23 +91,24 @@ updateDisplay = () =>{
     console.log(guessedLetters)
 }
 
-function showMessage(text) {
-            messageText.textContent = text;
-            messageBox.classList.remove("hidden");
+const showMessage = (text) => {
+        messageBox.classList.remove("hidden");
+        messageText.textContent = text;
+         
 }
 
-validateGuess = () => {
+const validateGuess = () => {
     let guess = guessInput.value.toLowerCase().trim();
     guessInput.value = "";
     console.log(guess) //remove after validations
 
     if (guess.length !== 1 || !/[a-z]/.test(guess)){
         showMessage("Please enter only one -1- letter at a time.")
-        console.log("Please enter only one -1- letter at a time.")
+        restartButton.classList.add("hidden");
         return;
     }else if (guessedLetters.has(guess)){
         showMessage(`You have already used '${guess}'.`);
-        console.log("You already guessed" `${guess}`) //remove after validations
+        restartButton.classList.add("hidden");
         return;
     }
     else if (secretWord.includes(guess)){
@@ -111,18 +125,20 @@ validateGuess = () => {
     checkGame();
     guessedLetters.add(guess);
     updateDisplay();
-    console.log(guessedLetters) //remove after validations
+    restartButton.hidden;
 };
 
-checkGame = () => {
+const checkGame = () => {
      if (displayWord.join('')=== secretWord) {
         // player wins
-        showMessage(`Well done! The spell was ${secretWord}. Go to Dumbledoor for house points!`)
+        showMessage(`🌟 Well done 🌟! The spell was " ${secretWord} ". Go to Dumbledoor for house points!`)
         console.log("You won!")
+        restartButton.classList.remove("hidden");
      } else if (wrongGuesses >= maxWrongGuesses) {
         // player loses
-        showMessage(`Your magic failed! Eat slugs! The spell was ${secretWord}.`);
+        showMessage(`Your magic failed 👎 ! Eat slugs! The spell was " ${secretWord} ".`);
         gameScreen.classList.add("hidden");
+        restartButton.classList.remove("hidden");
      }
 
 }
@@ -131,17 +147,19 @@ checkGame = () => {
 
 
 /*----------- Event Listeners ----------*/
-hpButton.addEventListener("click", () => initGame());
+hpButton.addEventListener("click", () => initGame("harry-potter"));
+lotrButton.addEventListener("click", () => initGame("lotr"));
 guessButton.addEventListener("click" , validateGuess);
 restartButton.addEventListener("click", () => {
     messageBox.classList.add("hidden");
+    themeSelection.classList.remove("hidden");
     guessInput.value = " "; 
     initGame();
 });
 
 guessInput.addEventListener("keyup", (event) =>{
-    messageBox.classList.add("hidden");
     showMessage("");
+    messageBox.classList.add("hidden");
 
     if (event.key === "Enter") {
         validateGuess();

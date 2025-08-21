@@ -52,14 +52,15 @@ h1 {
 
 button {
     background-color: #f4c430; /* goldenrod variant */
-  color: #222F5B;
-  border: none;
-  padding: 12px 24px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
+    color: #222F5B;
+    border: none;
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
 }
 
 button:hover {
@@ -90,15 +91,6 @@ button:hover {
     gap: 1.5rem;
     align-items: center;
 }
-
-.message-box  {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: center;
-
-}
-
 
 .status-text{
     color: #ffffff;
@@ -157,4 +149,24 @@ button:hover {
     align-items: center;
     border: 5px, solid black;
     padding: 10px;
+}
+
+#message-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    padding: initial;
+    gap: 1rem;
+    z-index: 10;
+}
+
+#message-box p{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px;
+    color: white;
 }

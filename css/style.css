@@ -140,12 +140,24 @@ button:hover {
      animation: pulse 2s infinite;
 }
 
-.hp-logo-img {
-  max-width: 100%;
-  height: auto;
+.hp-logo img {
+    max-width: 100%;
+    height: auto;
 }
 
+.lotr-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+
 #hp-button {
+    align-items: center;
+    border: 5px, solid black;
+    padding: 10px;
+}
+
+#lotr-button {
     align-items: center;
     border: 5px, solid black;
     padding: 10px;

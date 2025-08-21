@@ -47,6 +47,7 @@ const gameScreen = document.getElementById("game-screen");
 const hpButton = document.getElementById("hp-button");
 const lotrButton = document.getElementById("lotr-button");
 const hpLogo = document.getElementById("hp-logo");
+const lotrLogo = document.getElementById("lotr-logo");
 const wordDisplay =document.getElementById("word-display");
 const wrongGuessesText =document.getElementById("wrong-guesses-text")
 const guessedLettersDisplay = document.getElementById("guessed-letters-display");
@@ -61,10 +62,17 @@ const initGame = (theme) =>{
     themeSelection.classList.add("hidden"); 
     gameScreen.classList.remove("hidden");
     messageBox.classList.add("hidden");
-    hpLogo.classList.remove("hidden");
+    hpLogo.classList.add("hidden");
+    lotrLogo.classList.add("hidden");
+    if (theme === "harry-potter") {
+        hpLogo.classList.remove("hidden");
+    } else if (theme === "lotr") {
+        lotrLogo.classList.remove("hidden");
+    }
+
 
     let wordList = [];
-    currentTheme = themeSelection;
+    currentTheme = theme;
      if(theme ==="harry-potter"){
         wordList = harryPotterSpells;
      } else if (theme === "lotr"){
@@ -88,6 +96,8 @@ const updateDisplay = () =>{
     console.log(wrongGuessesText)
     guessedLettersDisplay.textContent = [...guessedLetters].join(", ");
     hpButton.classList.add("hidden");
+    lotrButton.classList.add("hidden");
+
     console.log(guessedLetters)
 }
 
@@ -103,7 +113,7 @@ const validateGuess = () => {
     console.log(guess) //remove after validations
 
     if (guess.length !== 1 || !/[a-z]/.test(guess)){
-        showMessage("Please enter only one -1- letter at a time.")
+        showMessage("Please enter only a letter.")
         restartButton.classList.add("hidden");
         return;
     }else if (guessedLetters.has(guess)){
@@ -129,20 +139,28 @@ const validateGuess = () => {
 };
 
 const checkGame = () => {
-     if (displayWord.join('')=== secretWord) {
+     if (displayWord.join('')=== secretWord && currentTheme === "harry-potter") {
         // player wins
         showMessage(`🌟 Well done 🌟! The spell was " ${secretWord} ". Go to Dumbledoor for house points!`)
         console.log("You won!")
         restartButton.classList.remove("hidden");
-     } else if (wrongGuesses >= maxWrongGuesses) {
+     } else if (displayWord.join('')=== secretWord && currentTheme === "lotr") {
+        // player wins
+        showMessage(`🌟 Well done 🌟! The character was " ${secretWord} ". Gandalf would be proud!`)
+        console.log("You won!")
+        restartButton.classList.remove("hidden");
+     } else if (wrongGuesses >= maxWrongGuesses && currentTheme === "harry-potter") {
         // player loses
         showMessage(`Your magic failed 👎 ! Eat slugs! The spell was " ${secretWord} ".`);
         gameScreen.classList.add("hidden");
         restartButton.classList.remove("hidden");
+     } else if (wrongGuesses >= maxWrongGuesses && currentTheme === "lotr") {
+        // player loses
+        showMessage(`You failed 👎 ! The orks are coming for you! The spell was " ${secretWord} ".`);
+        gameScreen.classList.add("hidden");
+        restartButton.classList.remove("hidden");
      }
-
-}
-
+};
 
 
 
@@ -151,10 +169,19 @@ hpButton.addEventListener("click", () => initGame("harry-potter"));
 lotrButton.addEventListener("click", () => initGame("lotr"));
 guessButton.addEventListener("click" , validateGuess);
 restartButton.addEventListener("click", () => {
-    messageBox.classList.add("hidden");
-    themeSelection.classList.remove("hidden");
-    guessInput.value = " "; 
-    initGame();
+  gameScreen.classList.add("hidden");
+  themeSelection.classList.remove("hidden");
+  hpButton.classList.remove("hidden");
+  lotrButton.classList.remove("hidden");
+  hpLogo.classList.add("hidden");
+  lotrLogo.classList.add("hidden");
+  messageBox.classList.add("hidden");
+  guessInput.value = "";
+  displayWord = [];
+  guessedLetters.clear();
+  wrongGuesses = 0;
+  secretWord = "";
+  currentTheme = "";
 });
 
 guessInput.addEventListener("keyup", (event) =>{

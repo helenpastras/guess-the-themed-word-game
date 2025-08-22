@@ -155,12 +155,14 @@ button:hover {
     align-items: center;
     border: 5px, solid black;
     padding: 10px;
+    animation: pulse 2s infinite;
 }
 
 #lotr-button {
     align-items: center;
     border: 5px, solid black;
     padding: 10px;
+    animation: pulse 2s infinite;
 }
 
 #message-box{

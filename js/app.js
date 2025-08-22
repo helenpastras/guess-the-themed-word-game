@@ -42,7 +42,7 @@
 // ______________________________________________________________________________________________________
 
 /*-------------- Constants -------------*/
-const harryPotterSpells = ["accio", "alohomora", "lumos", "expecto patronum", "crucio", "wingardium leviosa", "reparo", "obliviate", "expelliarmus", "nox", "petrificus totalus", "protego", "riddikulus"];
+const harryPotterSpells = ["accio", "alohomora", "aguamenti", "lumos", "difindo", "crucio", "reparo", "obliviate", "expelliarmus", "nox", "protego", "riddikulus"];
 const lotrCharacters = ["frodo", "gandalf", "aragorn", "legolas", "gollum", "sam", "pippin", "merry", "saruman", "eowyn", "gimli", "sauron", "boromir"];
 const maxWrongGuesses = 10;
 
